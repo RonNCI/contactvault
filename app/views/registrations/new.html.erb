@@ -2,83 +2,50 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="card shadow">
-        <div class="card-header bg-primary text-white text-center py-3">
-          <h2 class="mb-0">Join Contactvault</h2>
+      <div class="card">
+        <!-- card header with title -->
+        <div class="card-header">
+          <h2>Create Vault Account</h2>
         </div>
-        
-        <div class="card-body p-4">
-          <%= form_for(@vault_user, url: vault_users_path, html: { class: "vault-registration-form" }) do |f| %>
-            <% if @vault_user.errors.any? %>
-              <div class="alert alert-danger alert-dismissible fade show">
-                <h5 class="alert-heading">
-                  <i class="bi bi-exclamation-triangle"></i>
-                  <%= pluralize(@vault_user.errors.count, "error") %> prevented registration:
-                </h5>
-                <ul class="mb-0">
-                  <% @vault_user.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                  <% end %>
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              </div>
-            <% end %>
-
-            <div class="mb-4">
-              <%= f.label :email, "Email Address", class: "form-label fw-bold" %>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                <%= f.email_field :email,
-                    class: "form-control #{@vault_user.errors[:email].any? ? 'is-invalid' : ''}",
-                    placeholder: "your.email@example.com",
-                    autocomplete: "email" %>
-              </div>
-              <div class="form-text">We'll never share your email with anyone else.</div>
+        <!-- card body containing the form -->
+        <div class="card-body">
+          <%= form_with(model: @vault_user, url: register_path) do |f| %>
+            <!-- email input field -->
+            <div class="mb-3">
+              <%= f.label :email, class: "form-label" %>
+              <%= f.email_field :email, class: "form-control" %>
             </div>
 
-            <div class="mb-4">
-              <%= f.label :password, "Create Password", class: "form-label fw-bold" %>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                <%= f.password_field :password,
-                    class: "form-control #{@vault_user.errors[:password].any? ? 'is-invalid' : ''}",
-                    placeholder: "Minimum 8 characters" %>
-              </div>
-              <div class="form-text">Use at least 8 characters with a mix of letters and numbers</div>
+            <!-- password input field -->
+            <div class="mb-3">
+              <%= f.label :password, class: "form-label" %>
+              <%= f.password_field :password, class: "form-control" %>
             </div>
 
-            <div class="mb-4">
-              <%= f.label :password_confirmation, "Confirm Password", class: "form-label fw-bold" %>
-              <div class="input-group">
-                <span class="input-group-text"><i class="bi bi-lock-check"></i></span>
-                <%= f.password_field :password_confirmation,
-                    class: "form-control #{@vault_user.errors[:password_confirmation].any? ? 'is-invalid' : ''}",
-                    placeholder: "Re-enter your password" %>
-              </div>
+            <!-- password confirmation field -->
+            <div class="mb-3">
+              <%= f.label :password_confirmation, class: "form-label" %>
+              <%= f.password_field :password_confirmation, class: "form-control" %>
             </div>
 
-            <div class="d-grid gap-3">
-              <%= f.submit "Create Vault Account", class: "btn btn-primary btn-lg" %>
-              <div class="text-center">
-                Already have an account? 
-                <%= link_to "Sign in", login_path, class: "text-primary text-decoration-none" %>
-              </div>
-            </div>
+            <!-- submit button -->
+            <%= f.submit "Create Account", class: "btn btn-primary" %>
           <% end %>
         </div>
       </div>
-
-      <!-- flash messages section -->
-      <% if flash.any? %>
-        <div class="mt-3">
-          <% flash.each do |name, msg| %>
-            <div class="alert <%= name == 'notice' ? 'alert-success' : 'alert-danger' %> alert-dismissible fade show">
-              <%= msg %>
-              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
+
+<!-- flash messages section -->
+<% if flash.any? %>
+  <div class="mt-3">
+    <% flash.each do |name, msg| %>
+      <!-- alert for success or error messages -->
+      <div class="alert <%= name == 'notice' ? 'alert-success' : 'alert-danger' %> alert-dismissible fade show">
+        <%= msg %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <% end %>
+  </div>
+<% end %>

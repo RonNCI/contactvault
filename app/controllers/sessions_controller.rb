@@ -1,23 +1,21 @@
 class SessionsController < ApplicationController
-  # displays the login form
   def new
+    redirect_to dashboard_path if logged_in?
   end
 
-  # handles the login form submission
   def create
     user = User.find_by(email: params[:session][:email])
     if user&.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to root_path, notice: 'Welcome to Contactvault!'
+      redirect_to dashboard_path, notice: 'Successfully logged in!'
     else
-      flash.now[:alert] = 'Invalid email/password combination'
+      flash.now[:alert] = 'Invalid email or password'
       render :new, status: :unprocessable_entity
     end
   end
 
-  # handles user logout
   def destroy
     session[:user_id] = nil
-    redirect_to login_path, notice: 'Successfully logged out'
+    redirect_to login_path, notice: 'Successfully logged out!'
   end
 end

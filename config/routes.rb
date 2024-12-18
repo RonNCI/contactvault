@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
-  # sets the root path to the login page
-  root 'sessions#new'
-  
-  # handles user login routes
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  # check if user is logged in for root path
+  constraints lambda { |req| req.session[:user_id].present? } do
+    root "dashboard#index", as: :authenticated_root
+  end
 
-  # handles user registration routes
-  get '/register', to: 'registrations#new', as: 'new_vault_user'
-  post '/register', to: 'registrations#create', as: 'vault_users'
+  # default root path for non-authenticated users
+  root "sessions#new"
+
+  # authentication routes
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+
+  # registration routes
+  get "/register", to: "registrations#new", as: "new_vault_user"
+  post "/register", to: "registrations#create", as: "vault_users"
+
+  # dashboard route
+  get "/dashboard", to: "dashboard#index"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -20,7 +28,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
