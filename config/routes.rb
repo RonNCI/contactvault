@@ -1,24 +1,22 @@
 Rails.application.routes.draw do
-  # check if user is logged in for root path
-  constraints lambda { |req| req.session[:user_id].present? } do
-    root "dashboard#index", as: :authenticated_root
-  end
+  # Root routes
+  root 'sessions#new'
+  
+  # Authentication routes
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
+  # Registration routes with named paths
+  get '/register', to: 'registrations#new', as: 'new_vault_user'
+  post '/register', to: 'registrations#create'
+  
+  # Dashboard route
+  get '/dashboard', to: 'dashboard#index'
 
-  # default root path for non-authenticated users
-  root "sessions#new"
-
-  # authentication routes
-  get "/login", to: "sessions#new"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
-
-  # registration routes
-  get "/register", to: "registrations#new", as: "new_vault_user"
-  post "/register", to: "registrations#create", as: "vault_users"
-
-  # dashboard route
-  get "/dashboard", to: "dashboard#index"
-
+  # contacts resource for managing user contacts
+  resources :contacts
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

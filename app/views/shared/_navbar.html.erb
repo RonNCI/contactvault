@@ -1,0 +1,47 @@
+<!-- navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <!-- brand logo and name -->
+    <a class="navbar-brand" href="#">
+      <i class="bi bi-shield-lock"></i> Contactvault
+    </a>
+    <!-- mobile menu toggle button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- main navigation content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <!-- left side navigation items -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to dashboard_path, class: "nav-link #{current_page?(dashboard_path) ? 'active' : ''}" do %>
+            <i class="bi bi-house"></i> Dashboard
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to contacts_path, class: "nav-link #{current_page?(contacts_path) ? 'active' : ''}" do %>
+            <i class="bi bi-person-lines-fill"></i> Contacts
+          <% end %>
+        </li>
+      </ul>
+      
+      <!-- user profile dropdown -->
+      <div class="navbar-nav">
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle"></i> <%= current_user.email %>
+          </a>
+          <!-- dropdown menu items -->
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <%= button_to logout_path, method: :delete, class: "dropdown-item text-danger" do %>
+                <i class="bi bi-box-arrow-right"></i> Logout
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

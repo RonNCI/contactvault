@@ -1,0 +1,32 @@
+<%= render 'shared/navbar' %>
+<!-- container for contact details -->
+<div class="container mt-4">
+  <div class="card">
+    <!-- contact name header -->
+    <div class="card-header">
+      <h2><%= @contact.name %></h2>
+    </div>
+    <!-- contact information section -->
+    <div class="card-body">
+      <% if @contact.email.present? %>
+        <!-- email field -->
+        <p><strong><i class="bi bi-envelope"></i> Email:</strong> <%= @contact.email %></p>
+      <% end %>
+      
+      <% if @contact.phone.present? %>
+        <!-- phone field -->
+        <p><strong><i class="bi bi-telephone"></i> Phone:</strong> <%= @contact.phone %></p>
+      <% end %>
+      
+      <% if @contact.address.present? %>
+        <!-- address field -->
+        <p><strong><i class="bi bi-geo-alt"></i> Address:</strong><br> <%= @contact.address %></p>
+      <% end %>
+    </div>
+    <!-- action buttons -->
+    <div class="card-footer">
+      <%= link_to "Edit", edit_contact_path(@contact), class: "btn btn-primary" %>
+      <%= link_to "Back", contacts_path, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+</div>

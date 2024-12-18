@@ -1,0 +1,47 @@
+<%= render 'shared/navbar' %>
+<!-- container for contacts page -->
+<div class="container mt-4">
+  <!-- header section with title and add button -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-person-lines-fill"></i> Vault Contacts</h2>
+    <%= link_to new_contact_path, class: "btn btn-primary" do %>
+      <i class="bi bi-person-plus"></i> Add Contact
+    <% end %>
+  </div>
+   
+  <!-- grid of contact cards -->
+  <div class="row">
+    <% @contacts.each do |contact| %>
+      <!-- individual contact card -->
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= contact.name %></h5>
+            <div class="card-text">
+              <!-- contact email if present -->
+              <% if contact.email.present? %>
+                <p><i class="bi bi-envelope"></i> <%= contact.email %></p>
+              <% end %>
+              <!-- contact phone if present -->
+              <% if contact.phone.present? %>
+                <p><i class="bi bi-telephone"></i> <%= contact.phone %></p>
+              <% end %>
+            </div>
+            <!-- action buttons -->
+            <div class="mt-3">
+              <%= link_to contact_path(contact), class: "btn btn-outline-primary btn-sm" do %>
+                <i class="bi bi-eye"></i> View
+              <% end %>
+              <%= link_to edit_contact_path(contact), class: "btn btn-outline-secondary btn-sm" do %>
+                <i class="bi bi-pencil"></i> Edit
+              <% end %>
+              <%= button_to contact_path(contact), method: :delete, class: "btn btn-outline-danger btn-sm", form: { style: 'display: inline' }, data: { confirm: 'Remove from vault?' } do %>
+                <i class="bi bi-trash"></i> Delete
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

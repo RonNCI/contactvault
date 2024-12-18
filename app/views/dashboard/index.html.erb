@@ -11,13 +11,14 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="#"><i class="bi bi-house"></i> Dashboard</a>
+          <%= link_to dashboard_path, class: "nav-link" do %>
+            <i class="bi bi-house"></i> Dashboard
+          <% end %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="bi bi-person-lines-fill"></i> Contacts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="bi bi-folder2"></i> Groups</a>
+          <%= link_to contacts_path, class: "nav-link" do %>
+            <i class="bi bi-person-lines-fill"></i> Contacts
+          <% end %>
         </li>
       </ul>
       
@@ -39,7 +40,6 @@
     </div>
   </div>
 </nav>
-
 <div class="container mt-4">
   <div class="row">
     <!-- quick stats -->
@@ -84,12 +84,9 @@
         <div class="card-body">
           <h5 class="card-title"><i class="bi bi-lightning"></i> Quick Actions</h5>
           <div class="d-flex gap-2">
-            <button class="btn btn-primary">
+            <%= link_to new_contact_path, class: "btn btn-primary" do %>
               <i class="bi bi-person-plus"></i> Add Contact
-            </button>
-            <button class="btn btn-outline-primary">
-              <i class="bi bi-folder-plus"></i> Create Group
-            </button>
+            <% end %>
           </div>
         </div>
       </div>
