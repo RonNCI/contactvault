@@ -1,11 +1,13 @@
 class User < ApplicationRecord
-  # secures password with bcrypt
+  # handles password encryption and authentication
   has_secure_password
-  # user has many contacts that will be destroyed if user is deleted
+  # user can have multiple contacts that will be deleted when user is deleted
   has_many :contacts, dependent: :destroy
+  # user can have multiple activities that will be deleted when user is deleted
+  has_many :activities, dependent: :destroy
   
-  # validates email presence and uniqueness
+  # ensures email is present and unique across all users
   validates :email, presence: true, uniqueness: true
-  # validates password presence and minimum length of 6 characters
+  # ensures password is present and at least 6 characters long
   validates :password, presence: true, length: { minimum: 6 }
 end
