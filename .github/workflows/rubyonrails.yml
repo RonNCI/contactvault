@@ -33,10 +33,12 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2.4"
+          ruby-version: "3.3.6"
           bundler-cache: true
+      - name: Regenerate Rails binaries
+        run: bundle exec rails app:update:bin
       - name: Set up database schema
-        run: bin/rails db:schema:load
+        run: bundle exec rails db:schema:load
       - name: Run tests
         run: bin/rake
 
@@ -48,7 +50,7 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2.4"
+          ruby-version: "3.3.6"
           bundler-cache: true
       - name: Generate binstubs
         run: bundle binstubs bundler-audit brakeman rubocop
