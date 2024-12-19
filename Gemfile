@@ -51,7 +51,6 @@ group :development, :test do
   gem 'ruby_audit'
   gem 'rubocop-rails'
   gem 'rubocop-rails-omakase'
-
 end
 
 group :development do
