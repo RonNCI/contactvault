@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Fix Rails binary permissions
+        run: chmod +x bin/rails
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
