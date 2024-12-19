@@ -47,9 +47,9 @@ group :development, :test do
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'pg'
-  gem 'robucop'
+  gem 'rubocop'
   gem 'ruby_audit'
-  gem 'robucop-rails'
+  gem 'rubocop-rails'
 end
 
 group :development do
