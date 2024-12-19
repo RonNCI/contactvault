@@ -44,13 +44,13 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
 
-  gem 'brakeman'
-  gem 'bundler-audit'
-  gem 'pg'
-  gem 'rubocop'
-  gem 'ruby_audit'
-  gem 'rubocop-rails'
-  gem 'rubocop-rails-omakase'
+  gem "brakeman"
+  gem "bundler-audit"
+  gem "pg"
+  gem "rubocop"
+  gem "ruby_audit"
+  gem "rubocop-rails"
+  gem "rubocop-rails-omakase"
 end
 
 group :development do

@@ -7,10 +7,10 @@ class RegistrationsController < ApplicationController
   # handles the signup form submission
   def create
     @vault_user = User.new(user_params)
-    
+
     if @vault_user.save
       session[:user_id] = @vault_user.id
-      redirect_to dashboard_path, notice: 'Welcome to Contactvault!'
+      redirect_to dashboard_path, notice: "Welcome to Contactvault!"
     else
       render :new, status: :unprocessable_entity
     end

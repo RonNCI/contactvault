@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :contacts, dependent: :destroy
   # user can have multiple activities that will be deleted when user is deleted
   has_many :activities, dependent: :destroy
-  
+
   # ensures email is present and unique across all users
   validates :email, presence: true, uniqueness: true
   # ensures password is present and at least 6 characters long

@@ -1,22 +1,22 @@
 Rails.application.routes.draw do
   # Root routes
-  root 'sessions#new'
-  
+  root "sessions#new"
+
   # Authentication routes
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
-  
+  get "/login", to: "sessions#new"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+
   # Registration routes with named paths
-  get '/register', to: 'registrations#new', as: 'new_vault_user'
-  post '/register', to: 'registrations#create'
-  
+  get "/register", to: "registrations#new", as: "new_vault_user"
+  post "/register", to: "registrations#create"
+
   # Dashboard route
-  get '/dashboard', to: 'dashboard#index'
+  get "/dashboard", to: "dashboard#index"
 
   # contacts resource for managing user contacts
   resources :contacts
-  
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

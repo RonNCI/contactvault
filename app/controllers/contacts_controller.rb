@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   before_action :require_login
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [ :show, :edit, :update, :destroy ]
 
   # displays all contacts for the current user, sorted by name
   def index
@@ -20,7 +20,7 @@ class ContactsController < ApplicationController
   def create
     @contact = current_user.contacts.build(contact_params)
     if @contact.save
-      redirect_to contacts_path, notice: 'Contact successfully added to vault!'
+      redirect_to contacts_path, notice: "Contact successfully added to vault!"
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class ContactsController < ApplicationController
   # updates an existing contact with the provided parameters
   def update
     if @contact.update(contact_params)
-      redirect_to contact_path(@contact), notice: 'Contact updated successfully!'
+      redirect_to contact_path(@contact), notice: "Contact updated successfully!"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class ContactsController < ApplicationController
   # removes a contact from the database
   def destroy
     @contact.destroy
-    redirect_to contacts_path, notice: 'Contact removed from vault.'
+    redirect_to contacts_path, notice: "Contact removed from vault."
   end
 
   private

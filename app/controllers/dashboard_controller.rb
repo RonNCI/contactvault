@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   # ensure user is logged in before accessing dashboard
   before_action :require_login
-  
+
   def index
     # get current user for vault access
     @vault_user = current_user
