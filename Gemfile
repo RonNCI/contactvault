@@ -50,6 +50,8 @@ group :development, :test do
   gem 'rubocop'
   gem 'ruby_audit'
   gem 'rubocop-rails'
+  gem 'rubocop-rails-omakase'
+
 end
 
 group :development do
