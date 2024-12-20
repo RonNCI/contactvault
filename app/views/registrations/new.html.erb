@@ -8,25 +8,47 @@
         </div>
         <div class="card-body">
           <%= form_with(model: @vault_user, url: '/register', local: true) do |f| %>
-            <!-- email input field -->
+            <!-- add error messages section at the top -->
+            <% if @vault_user.errors.any? %>
+              <div class="alert alert-danger">
+                <ul class="mb-0">
+                  <% @vault_user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <div class="mb-3">
               <%= f.label :email, class: "form-label" %>
-              <%= f.email_field :email, class: "form-control" %>
+              <%= f.email_field :email, class: "form-control #{@vault_user.errors[:email].any? ? 'is-invalid' : ''}" %>
+              <% if @vault_user.errors[:email].any? %>
+                <div class="invalid-feedback">
+                  <%= @vault_user.errors[:email].first %>
+                </div>
+              <% end %>
             </div>
 
-            <!-- password input field -->
             <div class="mb-3">
               <%= f.label :password, class: "form-label" %>
-              <%= f.password_field :password, class: "form-control" %>
+              <%= f.password_field :password, class: "form-control #{@vault_user.errors[:password].any? ? 'is-invalid' : ''}" %>
+              <% if @vault_user.errors[:password].any? %>
+                <div class="invalid-feedback">
+                  <%= @vault_user.errors[:password].first %>
+                </div>
+              <% end %>
             </div>
 
-            <!-- password confirmation field -->
             <div class="mb-3">
               <%= f.label :password_confirmation, class: "form-label" %>
-              <%= f.password_field :password_confirmation, class: "form-control" %>
+              <%= f.password_field :password_confirmation, class: "form-control #{@vault_user.errors[:password_confirmation].any? ? 'is-invalid' : ''}" %>
+              <% if @vault_user.errors[:password_confirmation].any? %>
+                <div class="invalid-feedback">
+                  <%= @vault_user.errors[:password_confirmation].first %>
+                </div>
+              <% end %>
             </div>
 
-            <!-- submit button -->
             <%= f.submit "Create Account", class: "btn btn-primary" %>
           <% end %>
         </div>
