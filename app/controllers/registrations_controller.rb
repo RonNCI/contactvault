@@ -10,7 +10,7 @@ class RegistrationsController < ApplicationController
 
     if @vault_user.save
       session[:user_id] = @vault_user.id
-      redirect_to dashboard_path, notice: "Welcome to Contactvault!"
+      redirect_to login_path, notice: "Account created successfully!"
     else
       render :new, status: :unprocessable_entity
     end
