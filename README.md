@@ -1,24 +1,37 @@
-# README
+# ContactVault
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ContactVault is a Ruby on Rails application for managing contacts with user authentication and activity logging.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- User authentication system
+- Contact management (create, read, update, delete)
+- Activity logging for contact changes
+- Caching system for improved performance
+- Background job processing with Solid Queue
 
-* System dependencies
+## Technical Stack
 
-* Configuration
+- Ruby on Rails 8.0
+- SQLite3 database
+- Solid Queue for background jobs
+- Fragment caching
+- System tests with Capybara
 
-* Database creation
+## Setup
 
-* Database initialization
+1. Clone the repository:
 
-* How to run the test suite
+git clone https://github.com/RonNCI/contactvault.git
 
-* Services (job queues, cache servers, search engines, etc.)
+2. Install dependencies:
+```bash
+bundle install
 
-* Deployment instructions
+3. Setup database:
+```bash
+rails db:create db:migrate
 
-* ...
+4. Start the server:
+```bash
+rails server
